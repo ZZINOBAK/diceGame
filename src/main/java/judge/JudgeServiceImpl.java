@@ -1,20 +1,17 @@
 package judge;
 
-import dice.Dice;
 import dice.FraudDice;
 import player.Player;
 import player.Type;
 import recorder.RecorderService;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class JudgeServiceImpl implements JudgeService{
-    private Map<Player, Type> playerList = new HashMap<>();
+    private final Map<Player, Type> playerList = new HashMap<>();
 
-    FraudDice fraudDice;
     int result = 0;
     int gap = 0;
 
@@ -25,26 +22,20 @@ public class JudgeServiceImpl implements JudgeService{
 
     @Override
     public void gameStart(int turns, RecorderService recorderService) {
-        while(turns > 0) {
-             for (Map.Entry<Player, Type> entry : playerList.entrySet()) {
-                Player player = entry.getKey();
-                Type type = entry.getValue();
-                if(type == Type.NORMAL) {
-                    result = player.getTypeOfDice().roll();
-                } else if (type == Type.FRAUD) {
-                    fraudDice = (FraudDice) player.getTypeOfDice();  // player.getTypeOfDice()가 Dice 타입이므로 캐스팅이 필요
-                    result = rollFraudDice(player, gap);
-                }
+        while(turns-- > 0) {
+            playerList.forEach((player, type) -> {
+                result = (type == Type.FRAUD)
+                        ? rollFraudDice(player, (FraudDice) player.getTypeOfDice(), gap)
+                        : player.getTypeOfDice().roll();
                 recorderService.saveResult(player, result);
-            }
+            });
             gap = getTheGap(playerList);
             recorderService.printResult(playerList);
-            turns--;
         }
         determineWinner(playerList);
     }
 
-    private int rollFraudDice(Player player, int gap) {
+    private int rollFraudDice(Player player, FraudDice fraudDice, int gap) {
         if (gap < 0) {
             player.setModeOfDice("strong");
             return fraudDice.strongRoll();  // FraudDice에만 있는 메서드 호출
@@ -72,18 +63,11 @@ public class JudgeServiceImpl implements JudgeService{
 
     @Override
     public void determineWinner(Map<Player, Type> playerList) {
-        Player winner = null;
-        for (Map.Entry<Player, Type> entry : playerList.entrySet()) {
-            Player player = entry.getKey();
-            if (winner == null || player.getTotalScore() > winner.getTotalScore()) {
-                winner = player;
-            }
-        }
+        Player winner = playerList.keySet().stream()
+                .max(Comparator.comparingInt(Player::getTotalScore))
+                .orElse(null);
+
         System.out.println("\n승자를 기록합니다.\n");
-        if (winner != null) {
-            System.out.println(winner.getName() + "가(이) 승리했습니다!");
-        } else {
-            System.out.println("무승부");
-        }
+        System.out.println(winner != null ? winner.getName() + "가(이) 승리했습니다!" : "무승부");
     }
 }
