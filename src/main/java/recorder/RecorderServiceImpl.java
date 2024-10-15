@@ -15,11 +15,6 @@ public class RecorderServiceImpl implements RecorderService {
     @Override
     public void printResult(Map<Player, Type> playerList) {
         System.out.print("[ ");
-        df
-                df
-                dfdf
-
-                        ㅇㄹㅇㄹㅇ
 
 
         for (Map.Entry<Player, Type> entry : playerList.entrySet()) {

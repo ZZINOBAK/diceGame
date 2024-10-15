@@ -3,7 +3,6 @@ package player;
 import dice.Dice;
 
 public class Player {
-
     String name;
     Type typeOfPlayer;
     int totalScore;
