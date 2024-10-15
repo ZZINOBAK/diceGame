@@ -17,7 +17,6 @@ public class RecorderServiceImpl implements RecorderService {
         System.out.print("[ ");
         for (Map.Entry<Player, Type> entry : playerList.entrySet()) {
             Player player = entry.getKey();
-
             System.out.print(player.getName() + ":" + player.getTotalScore());
             if (player.getTypeOfPlayer() == Type.FRAUD) {
                 System.out.print("[" + player.getModeOfDice() + "] ");

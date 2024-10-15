@@ -8,8 +8,6 @@ import recorder.RecorderService;
 
 public class GameMain {
     public static void main(String[] args) {
-        System.out.println("피알하려면 원래 이렇게 수정해야되는거니");
-
         AppConfig appConfig = new AppConfig();
         JudgeService judgeService = appConfig.judgeService();
         RecorderService recorderService = appConfig.recorderService();
