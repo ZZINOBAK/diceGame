@@ -15,6 +15,11 @@ public class RecorderServiceImpl implements RecorderService {
     @Override
     public void printResult(Map<Player, Type> playerList) {
         System.out.print("[ ");
+        df
+                df
+                dfdf
+
+                        
         for (Map.Entry<Player, Type> entry : playerList.entrySet()) {
             Player player = entry.getKey();
             System.out.print(player.getName() + ":" + player.getTotalScore());
