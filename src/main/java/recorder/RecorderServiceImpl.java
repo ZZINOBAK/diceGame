@@ -19,7 +19,9 @@ public class RecorderServiceImpl implements RecorderService {
                 df
                 dfdf
 
-                        
+                        ㅇㄹㅇㄹㅇ
+
+
         for (Map.Entry<Player, Type> entry : playerList.entrySet()) {
             Player player = entry.getKey();
             System.out.print(player.getName() + ":" + player.getTotalScore());
