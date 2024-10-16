@@ -2,7 +2,7 @@ package dice;
 
 import java.util.Random;
 
-public class Dice {
+public abstract class Dice {
     Random random = new Random();
     int randomNumber;
     public int roll() {

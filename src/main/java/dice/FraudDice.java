@@ -9,16 +9,16 @@ public class FraudDice extends Dice{
     }
 
     public int strongRoll() {
-        while (result <= 2) {
+        do {
             result = super.roll();
-        }
+        } while (result <= 2);
         return result;
     }
 
     public int weakRoll() {
-        while (result >= 5) {
+        do {
             result = super.roll();
-        }
+        } while (result >= 5);
         return result;
     }
 }
