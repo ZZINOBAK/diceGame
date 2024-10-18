@@ -9,11 +9,11 @@ public abstract class Player {
     private String modeOfDice;
     private int totalScore;
 
-    public Player(String name, Dice typeOfDice, String modeOfDice, int totalScore) {
+    public Player(String name, Dice typeOfDice, String modeOfDice) {
         this.name = name;
         this.typeOfDice = typeOfDice;
         this.modeOfDice = modeOfDice;
-        this.totalScore = totalScore;
+        this.totalScore = 0;
     }
 
     public String getName() {
@@ -38,5 +38,9 @@ public abstract class Player {
 
     public void setModeOfDice(String modeOfDice) {
         this.modeOfDice = modeOfDice;
+    }
+
+    public void rollDice(Player player, int gap) {
+
     }
 }

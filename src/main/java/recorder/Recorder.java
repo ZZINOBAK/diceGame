@@ -4,6 +4,7 @@ import player.FraudPlayer;
 import player.Player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Recorder {
 
@@ -12,13 +13,9 @@ public class Recorder {
     }
 
     public void printResult(List<Player> playerList) {
-        System.out.print("[ ");
-        for (Player player : playerList) {
-            System.out.print(player.getName() + ":" + player.getTotalScore() + " ");
-            if (player instanceof FraudPlayer) {
-                System.out.print("[" + player.getModeOfDice() + "]");
-            }
-        }
-        System.out.println("]");
+        System.out.println("[" + playerList.stream()
+                .map(player -> player.getName() + ":" + player.getTotalScore() +
+                        (player instanceof FraudPlayer ? "[" + player.getModeOfDice() + "]" : ""))
+                .collect(Collectors.joining(" ")) + "]");
     }
 }
