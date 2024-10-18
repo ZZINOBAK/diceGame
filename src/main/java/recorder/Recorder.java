@@ -1,27 +1,21 @@
 package recorder;
 
+import player.FraudPlayer;
+import player.Player;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Recorder {
-    int result;
-    String typeOfDice;
 
-    public Recorder(int result, String typeOfDice) {
-        this.result = result;
-        this.typeOfDice = typeOfDice;
+    public void saveResult(Player player, int result) {
+        player.setTotalScore(player.getTotalScore() + result);
     }
 
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
-
-    public String getTypeOfDice() {
-        return typeOfDice;
-    }
-
-    public void setTypeOfDice(String typeOfDice) {
-        this.typeOfDice = typeOfDice;
+    public void printResult(List<Player> playerList) {
+        System.out.println("[" + playerList.stream()
+                .map(player -> player.getName() + ":" + player.getTotalScore() +
+                        (player instanceof FraudPlayer ? "[" + player.getModeOfDice() + "]" : ""))
+                .collect(Collectors.joining(" ")) + "]");
     }
 }

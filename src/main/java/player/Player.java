@@ -2,36 +2,22 @@ package player;
 
 import dice.Dice;
 
-public class Player {
+public abstract class Player {
 
-    String name;
-    Type typeOfPlayer;
-    int totalScore;
-    Dice typeOfDice;
-    String modeOfDice;
+    private final String name;
+    private final Dice typeOfDice;
+    private String modeOfDice;
+    private int totalScore;
 
-    public Player(String name, Type typeOfPlayer, int totalScore, Dice typeOfDice, String modeOfDice) {
+    public Player(String name, Dice typeOfDice, String modeOfDice) {
         this.name = name;
-        this.typeOfPlayer = typeOfPlayer;
-        this.totalScore = totalScore;
         this.typeOfDice = typeOfDice;
         this.modeOfDice = modeOfDice;
+        this.totalScore = 0;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Type getTypeOfPlayer() {
-        return typeOfPlayer;
-    }
-
-    public void setTypeOfPlayer(Type typeOfPlayer) {
-        this.typeOfPlayer = typeOfPlayer;
     }
 
     public int getTotalScore() {
@@ -46,15 +32,15 @@ public class Player {
         return typeOfDice;
     }
 
-    public void setTypeOfDice(Dice typeOfDice) {
-        this.typeOfDice = typeOfDice;
-    }
-
     public String getModeOfDice() {
         return modeOfDice;
     }
 
     public void setModeOfDice(String modeOfDice) {
         this.modeOfDice = modeOfDice;
+    }
+
+    public void rollDice(Player player, int gap) {
+
     }
 }

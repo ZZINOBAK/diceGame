@@ -1,8 +1,8 @@
 package dice;
 
-public class NormalDice extends Dice{
+public class NormalDice extends Dice {
     @Override
-    public int roll() {
-        return super.roll();
+    public void roll() {
+        super.roll();
     }
 }
