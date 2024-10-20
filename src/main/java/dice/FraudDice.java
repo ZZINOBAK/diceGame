@@ -1,24 +1,21 @@
 package dice;
 
-public class FraudDice extends Dice{
-    int result;
+public class FraudDice extends Dice {
 
     @Override
-    public int roll() {
-        return super.roll();
+    public void roll() {
+        super.roll();
     }
 
-    public int strongRoll() {
-        while (result <= 2) {
-            result = super.roll();
-        }
-        return result;
+    public void strongRoll() {
+        do {
+            super.roll();
+        } while (getRandomNumber() <= 2);
     }
 
-    public int weakRoll() {
-        while (result >= 5) {
-            result = super.roll();
-        }
-        return result;
+    public void weakRoll() {
+        do {
+            super.roll();
+        } while (getRandomNumber() >= 5);
     }
 }
